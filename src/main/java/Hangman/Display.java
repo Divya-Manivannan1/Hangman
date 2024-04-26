@@ -109,6 +109,16 @@ public class Display {
         System.out.println("Lives left: " + livesLeft);
     }
 
+    public static void printSuccessMessage() {
+        System.out.println("Congratulations!! You have found the right word!!");
+    }
+
+    public static void printFailureMessage(String word) {
+        System.out.println("Oh No!! You've run out of lives!!");
+        System.out.println("Better luck nest time!!");
+        System.out.println("The actual work was " + word);
+    }
+
     public static void main(String[] args) {
         printIntro();
         printWord("Hello", new boolean[]{false, true, false, false, true});
