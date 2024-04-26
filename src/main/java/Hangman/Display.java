@@ -1,7 +1,7 @@
 package Hangman;
 
 public class Display {
-    public void printWord(String word, boolean[] guessedRight) {
+    public static void printWord(String word, boolean[] guessedRight) {
         for (int i = 0; i < guessedRight.length; i++) {
             if (guessedRight[i])
                 System.out.print(word.charAt(i));
@@ -11,19 +11,19 @@ public class Display {
         System.out.println();
     }
 
-    public void printIntro() {
+    public static void printIntro() {
         System.out.println("=================================================");
         System.out.println("<<<<<<<< WELCOME TO DIVYA'S HANGMAN GAME >>>>>>>>");
         System.out.println("=================================================");
     }
 
-    public void printUserOptions(String[] userOptions) {
+    public static void printUserOptions(String[] userOptions) {
         for (byte i = 0; i < userOptions.length; i++) {
             System.out.println("Option " + (i + 1) + ": " + userOptions[i]);
         }
     }
 
-    public void printHangman(byte livesLeft) {
+    public static void printHangman(byte livesLeft) {
         switch (livesLeft) {
             case 8:
                 System.out.println();
@@ -109,11 +109,11 @@ public class Display {
         System.out.println("Lives left: " + livesLeft);
     }
 
-    public void printSuccessMessage() {
+    public static void printSuccessMessage() {
         System.out.println("Congratulations!! You have found the right word!!");
     }
 
-    public void printFailureMessage(String word) {
+    public static void printFailureMessage(String word) {
         System.out.println("Oh No!! You've run out of lives!!");
         System.out.println("Better luck nest time!!");
         System.out.println("The actual work was " + word);
