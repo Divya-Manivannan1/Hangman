@@ -1,10 +1,14 @@
 package Hangman;
 
+import java.io.IOException;
+
 public class Display {
     public static void printWord(String word, boolean[] guessedRight) {
         for (int i = 0; i < guessedRight.length; i++) {
             if (guessedRight[i])
                 System.out.print(word.charAt(i));
+            else if (word.charAt(i) == ' ')
+                System.out.print(' ');
             else
                 System.out.print("_");
         }
@@ -116,7 +120,16 @@ public class Display {
     public static void printFailureMessage(String word) {
         System.out.println("Oh No!! You've run out of lives!!");
         System.out.println("Better luck nest time!!");
-        System.out.println("The actual work was " + word);
+        System.out.println("The right answer is " + word);
     }
 
+    public static void clearConsole() {
+       /* try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        */
+    }
 }

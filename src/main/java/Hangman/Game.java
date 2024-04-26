@@ -7,6 +7,10 @@ public class Game {
     private byte lives = 8;
     private boolean gameWon = false;
 
+    public String getWord() {
+        return word;
+    }
+
     private void move() {
         byte letterPosition = 0;
         Display.printWord(word, lettersGuessedInWord);
@@ -17,13 +21,15 @@ public class Game {
                 lives--;
             while (letterPosition != -1) {
                 lettersGuessedInWord[letterPosition] = true;
-                letterPosition = (byte) word.indexOf(ch, letterPosition);
+                letterPosition = (byte) word.indexOf(ch, letterPosition + 1);
             }
         }
     }
 
-    public void game() {
-        while (!gameWon) {
+    public boolean game() {
+        while (!gameWon && lives > 0) {
+            Display.clearConsole();
+            Display.printHangman(lives);
             move();
             gameWon = true;
             for (boolean isGuessed : lettersGuessedInWord) {
@@ -33,5 +39,6 @@ public class Game {
                 }
             }
         }
+        return gameWon;
     }
 }
