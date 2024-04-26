@@ -1,18 +1,13 @@
 package Hangman;
 
-public class UserOptions {
+public class UserOptions extends UserInput {
     public String[] options;
-    private final UserInput userInput = new UserInput();
-
-    public String[] getOptions() {
-        return options;
-    }
 
     public UserOptions(String[] options) {
         this.options = options;
     }
 
-    public void setOptions(String option, byte index) {
+    public void setOption(String option, byte index) {
         if (index < options.length && index >= 0)
             options[index] = option;
     }
@@ -22,7 +17,7 @@ public class UserOptions {
         Display.printUserOptions(options);
         byte optionNum = 0;
         while (optionNum == 0) {
-            optionNum = userInput.getByte((byte) options.length);
+            optionNum = getByte((byte) options.length);
         }
         return optionNum;
     }
