@@ -7,6 +7,7 @@ public class UserInput {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static byte getByte(byte max) {
+        // This function will return the user input if it is between 1 and max. Else, it will return.
         byte num = 0;
         try {
             num = scanner.nextByte();
@@ -19,11 +20,24 @@ public class UserInput {
         return num;
     }
 
+    public static char getChar() {
+        // This function will return a Capital letter or *
+        char ch;
+        ch = scanner.next().charAt(0);
+        if (Character.isLetter(ch)) {
+            ch = Character.toUpperCase(ch);
+        } else {
+            System.out.println("The value you have entered is not a letter");
+            ch = '*';
+        }
+        return ch;
+    }
+
     public static void main(String[] args) {
-        int num;
+        char ch;
         while (true) {
-            num = getByte((byte) 4);
-            System.out.println("no is" + num);
+            ch = getChar();
+            System.out.println("no is" + ch);
         }
     }
 
