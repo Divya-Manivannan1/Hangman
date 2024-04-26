@@ -4,9 +4,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInput {
-    private static final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
-    public static byte getByte(byte max) {
+    public byte getByte(byte max) {
         // This function will return the user input if it is between 1 and max. Else, it will return.
         byte num = 0;
         try {
@@ -20,7 +20,7 @@ public class UserInput {
         return num;
     }
 
-    public static char getChar() {
+    public char getChar() {
         // This function will return a Capital letter or *
         char ch;
         ch = scanner.next().charAt(0);
@@ -31,14 +31,6 @@ public class UserInput {
             ch = '*';
         }
         return ch;
-    }
-
-    public static void main(String[] args) {
-        char ch;
-        while (true) {
-            ch = getChar();
-            System.out.println("no is" + ch);
-        }
     }
 
 }
