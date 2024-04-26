@@ -15,8 +15,10 @@ public class UserInput {
             System.out.println("The value you have entered is not a number");
             scanner.next();
         }
-        if (num > max || num < 0)
+        if (num > max || num <= 0) {
             num = 0;
+            System.out.println("Please enter a valid number");
+        }
         return num;
     }
 
@@ -27,7 +29,7 @@ public class UserInput {
         if (Character.isLetter(ch)) {
             ch = Character.toUpperCase(ch);
         } else {
-            System.out.println("The value you have entered is not a letter");
+            System.out.println("The value you have entered is not a letter. Please enter a valid option");
             ch = '*';
         }
         return ch;

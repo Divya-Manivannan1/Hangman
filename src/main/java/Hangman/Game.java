@@ -1,22 +1,27 @@
 package Hangman;
 
 public class Game {
+    private UserInput charInput = new UserInput();
+    private final String word = Library.getRandomWord();
+    private boolean[] lettersGuessedInWord = new boolean[word.length()];
+    private byte lives = 8;
+    private char ch = 0;
 
-
-    public static void main(String[] args) {
-        UserOptions mainMenu = new UserOptions(new String[]{"Play a new Game", "Checkout the rules", "Quit"});
-        byte mainMenuOption = 0;
-        Rules gameRules = new Rules();
-        while (mainMenuOption != 3) {
-            mainMenuOption = mainMenu.getOption();
-            switch (mainMenuOption) {
-                case 1:
-                    System.out.println("Play game");
-                    break;
-                case 2:
-                    gameRules.printRules();
-                    break;
+    private void move() {
+        Display.printWord(word, lettersGuessedInWord);
+        ch = charInput.getChar();
+        if (ch != '*') {
+            byte letterPosition = (byte) word.indexOf(ch, letterPosition);
+            if (letterPosition == -1)
+                lives--;
+            while (letterPosition != -1) {
+                lettersGuessedInWord[letterPosition] = true;
+                letterPosition = (byte) word.indexOf(ch, letterPosition);
             }
         }
+    }
+
+    public void game() {
+
     }
 }
