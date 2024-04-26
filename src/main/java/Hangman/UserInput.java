@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class UserInput {
     private final static Scanner scanner = new Scanner(System.in);
 
-    public byte getByte(byte max) {
+    protected byte getByte(byte max) {
         // This function will return the user input if it is between 1 and max. Else, it will return.
         byte num = 0;
         try {
@@ -20,7 +20,7 @@ public class UserInput {
         return num;
     }
 
-    public char getChar() {
+    protected char getChar() {
         // This function will return a Capital letter or *
         char ch;
         ch = scanner.next().charAt(0);
