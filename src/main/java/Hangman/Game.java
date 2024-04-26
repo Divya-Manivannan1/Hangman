@@ -5,13 +5,14 @@ public class Game {
     private final String word = Library.getRandomWord();
     private boolean[] lettersGuessedInWord = new boolean[word.length()];
     private byte lives = 8;
-    private char ch = 0;
+    private boolean gameWon = false;
 
     private void move() {
+        byte letterPosition = 0;
         Display.printWord(word, lettersGuessedInWord);
-        ch = charInput.getChar();
+        char ch = charInput.getChar();
         if (ch != '*') {
-            byte letterPosition = (byte) word.indexOf(ch, letterPosition);
+            letterPosition = (byte) word.indexOf(ch, letterPosition);
             if (letterPosition == -1)
                 lives--;
             while (letterPosition != -1) {
@@ -22,6 +23,15 @@ public class Game {
     }
 
     public void game() {
-
+        while (!gameWon) {
+            move();
+            gameWon = true;
+            for (boolean isGuessed : lettersGuessedInWord) {
+                if (!isGuessed) {
+                    gameWon = false;
+                    break;
+                }
+            }
+        }
     }
 }
