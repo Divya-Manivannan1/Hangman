@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInput {
-    private final Scanner scanner = new Scanner(System.in);
+    private final static Scanner scanner = new Scanner(System.in);
 
     public byte getByte(byte max) {
         // This function will return the user input if it is between 1 and max. Else, it will return.
