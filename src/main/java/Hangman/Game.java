@@ -1,13 +1,31 @@
 package Hangman;
 
+import Hangman.Display.Display;
+import Hangman.Library.Library;
+import Hangman.UserInput.UserInput;
+
 public class Game {
-    private UserInput charInput = new UserInput();
-    private final String word = Library.getRandomWord();
-    private final boolean[] lettersGuessedInWord = new boolean[word.length()];
-    private byte lives = 8;
-    private boolean gameWon = false;
-    private int score = 0;
-    private final boolean[] lettersGuessed = new boolean[26];
+    private final UserInput charInput;
+    private final String word;
+    private final boolean[] lettersGuessedInWord;
+    private byte lives;
+    private boolean gameWon;
+    private int score;
+    private final boolean[] lettersGuessed;
+
+    Game() {
+        word = Library.getRandomWord();
+        lives = 8;
+        score = 0;
+        lettersGuessedInWord = new boolean[word.length()];
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) == '-' || word.charAt(i) == ' ')
+                lettersGuessedInWord[i] = true;
+        }
+        lettersGuessed = new boolean[26];
+        gameWon = false;
+        charInput = new UserInput();
+    }
 
     public String getWord() {
         return word;
@@ -15,16 +33,18 @@ public class Game {
 
     private void move() {
         byte letterPosition = 0;
-        Display.printWord(word, lettersGuessedInWord);
         char ch = charInput.getInput();
         if (ch != '*') {
-            lettersGuessed[(int) ch - 65] = true;
+            if (isLetterPreviouslyGuessed(ch)) {
+                System.out.println("You have already guessed this letter! Please guess a new letter!");
+                ch = charInput.getInput();
+            }
             letterPosition = (byte) word.indexOf(ch, letterPosition);
             if (letterPosition == -1) {
                 lives--;
                 score -= 10;
             }
-            while (letterPosition != -1 && !lettersGuessedInWord[letterPosition]) {
+            while (letterPosition != -1) {
                 lettersGuessedInWord[letterPosition] = true;
                 letterPosition = (byte) word.indexOf(ch, letterPosition + 1);
                 score += 10;
@@ -33,24 +53,31 @@ public class Game {
     }
 
     public boolean game() {
-        for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) == '-' || word.charAt(i) == ' ')
-                lettersGuessedInWord[i] = true;
-        }
         while (!gameWon && lives > 0) {
             Display.clearConsole();
             Display.printHangman(lives);
             System.out.println("Your score is: " + score);
             Display.printLettersGuessed(lettersGuessed);
+            Display.printWord(word, lettersGuessedInWord);
             move();
-            gameWon = true;
-            for (boolean isGuessed : lettersGuessedInWord) {
-                if (!isGuessed) {
-                    gameWon = false;
-                    break;
-                }
-            }
+            gameWon = isGameWon();
         }
         return gameWon;
+    }
+
+    public boolean isGameWon() {
+        for (boolean isGuessed : lettersGuessedInWord) {
+            if (!isGuessed) return false;
+        }
+        return true;
+    }
+
+    public boolean isLetterPreviouslyGuessed(char ch) {
+        //Function also sets the letterAlreadyGuessed boolean array
+        int letterIndex = ch - 65;
+        boolean letterAlreadyGuessed = lettersGuessed[letterIndex];
+        if (!letterAlreadyGuessed)
+            lettersGuessed[letterIndex] = true;
+        return letterAlreadyGuessed;
     }
 }

@@ -1,5 +1,9 @@
 package Hangman;
 
+import Hangman.Display.Display;
+import Hangman.Display.Rules;
+import Hangman.UserInput.UserOptions;
+
 public class Main {
     public static void main(String[] args) {
         Game game = new Game();
