@@ -5,10 +5,11 @@ import java.io.IOException;
 public class Display {
     public static void printWord(String word, boolean[] guessedRight) {
         for (int i = 0; i < guessedRight.length; i++) {
+            char ch = word.charAt(i);
             if (guessedRight[i])
                 System.out.print(word.charAt(i));
-            else if (word.charAt(i) == ' ')
-                System.out.print(' ');
+            else if (ch == ' ' || ch == '-')
+                System.out.print(ch);
             else
                 System.out.print("_");
         }
