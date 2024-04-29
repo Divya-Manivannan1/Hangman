@@ -73,6 +73,7 @@ public class Game {
     }
 
     public boolean isLetterPreviouslyGuessed(char ch) {
+        //Function also sets the letterAlreadyGuessed boolean array
         boolean letterAlreadyGuessed = lettersGuessed[(int) ch - 65];
         if (!letterAlreadyGuessed)
             lettersGuessed[(int) ch - 65] = true;
