@@ -6,12 +6,18 @@ import Hangman.UserInput.UserInput;
 
 public class Game {
     private UserInput charInput = new UserInput();
-    private final String word = Library.getRandomWord();
-    private final boolean[] lettersGuessedInWord = new boolean[word.length()];
-    private byte lives = 8;
+    private final String word;
+    private boolean[] lettersGuessedInWord;
+    private byte lives;
     private boolean gameWon = false;
     private int score = 0;
     private final boolean[] lettersGuessed = new boolean[26];
+
+    Game(){
+        word = Library.getRandomWord();
+        lives = 8;
+        lettersGuessedInWord
+    }
 
     public String getWord() {
         return word;
@@ -47,14 +53,15 @@ public class Game {
             System.out.println("Your score is: " + score);
             Display.printLettersGuessed(lettersGuessed);
             move();
-            gameWon = true;
-            for (boolean isGuessed : lettersGuessedInWord) {
-                if (!isGuessed) {
-                    gameWon = false;
-                    break;
-                }
-            }
+            gameWon = isGameWon();
         }
         return gameWon;
+    }
+
+    private boolean isGameWon() {
+        for (boolean isGuessed : lettersGuessedInWord) {
+            if (!isGuessed) return false;
+        }
+        return true;
     }
 }
