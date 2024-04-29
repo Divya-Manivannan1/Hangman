@@ -1,7 +1,5 @@
 package Hangman;
 
-import java.io.IOException;
-
 public class Display {
     public static void printWord(String word, boolean[] guessedRight) {
         for (int i = 0; i < guessedRight.length; i++) {
@@ -26,6 +24,18 @@ public class Display {
         for (byte i = 0; i < userOptions.length; i++) {
             System.out.println("Option " + (i + 1) + ": " + userOptions[i]);
         }
+    }
+
+    public static void printLettersGuessed(boolean[] lettersGuessed) {
+        System.out.print("Letters guessed: ");
+        boolean hasAnyLetterBeenGuessed = false;
+        for (int i = 0; i < lettersGuessed.length; i++) {
+            if (lettersGuessed[i]) {
+                hasAnyLetterBeenGuessed = true;
+                System.out.print((char) (i + 65) + " ");
+            }
+        }
+        System.out.println(hasAnyLetterBeenGuessed ? "" : "-");
     }
 
     public static void printHangman(byte livesLeft) {
