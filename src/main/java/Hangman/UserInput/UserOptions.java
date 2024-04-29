@@ -1,4 +1,6 @@
-package Hangman;
+package Hangman.UserInput;
+
+import Hangman.Display.Display;
 
 public class UserOptions extends UserInput {
     public String[] options;

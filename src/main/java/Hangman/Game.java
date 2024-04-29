@@ -1,5 +1,9 @@
 package Hangman;
 
+import Hangman.Display.Display;
+import Hangman.Library.Library;
+import Hangman.UserInput.UserInput;
+
 public class Game {
     private UserInput charInput = new UserInput();
     private final String word = Library.getRandomWord();

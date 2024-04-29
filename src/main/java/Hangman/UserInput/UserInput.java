@@ -1,4 +1,4 @@
-package Hangman;
+package Hangman.UserInput;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -22,7 +22,7 @@ public class UserInput {
         return num;
     }
 
-    protected char getInput() {
+    public char getInput() {
         // This function will return a Capital letter or *
         char ch;
         ch = scanner.next().charAt(0);
