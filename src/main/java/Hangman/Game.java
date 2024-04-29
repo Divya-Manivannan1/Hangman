@@ -74,9 +74,10 @@ public class Game {
 
     public boolean isLetterPreviouslyGuessed(char ch) {
         //Function also sets the letterAlreadyGuessed boolean array
-        boolean letterAlreadyGuessed = lettersGuessed[(int) ch - 65];
+        int letterIndex = ch - 65;
+        boolean letterAlreadyGuessed = lettersGuessed[letterIndex];
         if (!letterAlreadyGuessed)
-            lettersGuessed[(int) ch - 65] = true;
-        return lettersGuessed[(int) ch - 65];
+            lettersGuessed[letterIndex] = true;
+        return letterAlreadyGuessed;
     }
 }

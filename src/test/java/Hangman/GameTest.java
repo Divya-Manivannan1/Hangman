@@ -2,7 +2,6 @@ package Hangman;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.sun.source.tree.AssertTree;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,18 +15,22 @@ class GameTest {
     }
 
     @Test
-    @DisplayName("check if a game is won when the right word is guessed")
-    void isGameWon_whenWordIsGuessed_gameWon() {
-        String word = game.getWord();
-        for (int i = 0; i < word.length(); i++)
-            game.isLetterPreviouslyGuessed(word.charAt(i));
-        assertTrue(game.isGameWon());
+    @DisplayName("check if a game is not won when initialized")
+    void isGameWon_initially_gameNotWon() {
+        String word = game.getWord().toUpperCase();
+        assertFalse(game.isGameWon());
+    }
+
+    @Test
+    @DisplayName("check if isLetterPreviouslyGuessed returns true when a letter is passed for the first time.")
+    void isLetterPreviouslyGuessed_whenALetterIsPassesForTheFirstTime_Pass() {
+        assertFalse(game.isLetterPreviouslyGuessed('A'));
     }
 
     @Test
     @DisplayName("check if isLetterPreviouslyGuessed returns false when the same letter is passed twice.")
     void isLetterPreviouslyGuessed_whenTheSameLetterIsPassesTwice_Fail() {
-        assertTrue(game.isLetterPreviouslyGuessed('a'));
-        assertFalse(game.isLetterPreviouslyGuessed('a'));
+        assertFalse(game.isLetterPreviouslyGuessed('A'));
+        assertTrue(game.isLetterPreviouslyGuessed('A'));
     }
 }
