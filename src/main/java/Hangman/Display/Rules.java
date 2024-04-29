@@ -1,4 +1,4 @@
-package Hangman;
+package Hangman.Display;
 
 public class Rules {
     private final String[] rules = {"RULES FOR PLAYING HANMAN", "========================",

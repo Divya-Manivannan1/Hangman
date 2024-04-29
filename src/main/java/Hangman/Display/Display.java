@@ -1,4 +1,4 @@
-package Hangman;
+package Hangman.Display;
 
 public class Display {
     public static void printWord(String word, boolean[] guessedRight) {

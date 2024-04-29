@@ -1,4 +1,6 @@
-package Hangman;
+package Hangman.UserInput;
+
+import Hangman.Display.Display;
 
 public class UserOptions extends UserInput {
     public String[] options;
@@ -10,6 +12,8 @@ public class UserOptions extends UserInput {
     public void setOption(String option, byte index) {
         if (index < options.length && index >= 0)
             options[index] = option;
+        else
+            throw new IllegalArgumentException("Index out of bounds");
     }
 
     public byte getOption() {
