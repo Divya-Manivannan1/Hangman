@@ -17,7 +17,6 @@ class GameTest {
     @Test
     @DisplayName("check if a game is not won when initialized")
     void isGameWon_initially_gameNotWon() {
-        String word = game.getWord().toUpperCase();
         assertFalse(game.isGameWon());
     }
 
