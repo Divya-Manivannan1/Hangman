@@ -14,7 +14,7 @@ public class Game {
     private void move() {
         byte letterPosition = 0;
         Display.printWord(word, lettersGuessedInWord);
-        char ch = charInput.getChar();
+        char ch = charInput.getInput();
         if (ch != '*') {
             letterPosition = (byte) word.indexOf(ch, letterPosition);
             if (letterPosition == -1)
