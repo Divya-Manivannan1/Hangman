@@ -3,10 +3,11 @@ package Hangman;
 public class Game {
     private UserInput charInput = new UserInput();
     private final String word = Library.getRandomWord();
-    private boolean[] lettersGuessedInWord = new boolean[word.length()];
+    private final boolean[] lettersGuessedInWord = new boolean[word.length()];
     private byte lives = 8;
     private boolean gameWon = false;
     private int score = 0;
+    private final boolean[] lettersGuessed = new boolean[26];
 
     public String getWord() {
         return word;
@@ -17,6 +18,7 @@ public class Game {
         Display.printWord(word, lettersGuessedInWord);
         char ch = charInput.getInput();
         if (ch != '*') {
+            lettersGuessed[(int) ch - 65] = true;
             letterPosition = (byte) word.indexOf(ch, letterPosition);
             if (letterPosition == -1) {
                 lives--;
@@ -39,6 +41,7 @@ public class Game {
             Display.clearConsole();
             Display.printHangman(lives);
             System.out.println("Your score is: " + score);
+            Display.printLettersGuessed(lettersGuessed);
             move();
             gameWon = true;
             for (boolean isGuessed : lettersGuessedInWord) {
