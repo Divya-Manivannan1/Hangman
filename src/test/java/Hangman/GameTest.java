@@ -27,7 +27,7 @@ class GameTest {
     @Test
     @DisplayName("check if isLetterPreviouslyGuessed returns false when the same letter is passed twice.")
     void isLetterPreviouslyGuessed_whenTheSameLetterIsPassesTwice_Fail() {
-        assertTrue(isLetterPreviouslyGuessed('a'));
-        assertFalse(isLetterPreviouslyGuessed('a'));
+        assertTrue(game.isLetterPreviouslyGuessed('a'));
+        assertFalse(game.isLetterPreviouslyGuessed('a'));
     }
 }
