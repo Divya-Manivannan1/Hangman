@@ -1,7 +1,7 @@
 package Hangman.Display;
 
 public class Rules {
-    private final String[] rules = {"RULES FOR PLAYING HANMAN", "========================",
+    private final String[] rules = {"RULES FOR PLAYING HANGMAN", "========================",
             "Hangman is an old school favorite, a word game where the goal is simply to find the missing word or words.",
             "You will be presented with a number of blank spaces representing the missing letters you need to find.",
             "Use the keyboard to guess a letter (I recommend starting with vowels).",

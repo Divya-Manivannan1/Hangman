@@ -2,7 +2,7 @@ package Hangman.Library;
 
 import java.util.Random;
 
-public class Library {
+public abstract class Library {
 
     private static final String[] wordBank = new String[]{"Elvis Presley", "Taylor Swift", "Rihanna", "George Harrison", "Kendrick Lamar", "Marlene Dietrich", "Ciara", "Shakira"};
 
