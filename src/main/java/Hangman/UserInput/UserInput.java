@@ -35,4 +35,25 @@ public class UserInput {
         return ch;
     }
 
+    protected String getInput(String type) {
+        System.out.println(type);
+        String input = scanner.nextLine();
+        input = input.trim();
+        try {
+            if (input.isEmpty()) {
+                throw new Exception(type + " cannot be empty");
+            }
+            if (type.contains("Password")) {
+                if (input.length() < 6) {
+                    throw new Exception("Password must contain at least 6 characters");
+                } else if (input.length() > 15)
+                    throw new Exception("Password can only contain a maximum of 15 characters");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            getInput(type);
+        }
+        return input;
+    }
+
 }
