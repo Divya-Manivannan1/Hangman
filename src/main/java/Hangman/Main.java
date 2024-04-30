@@ -6,7 +6,7 @@ import Hangman.UserInput.UserOptions;
 
 public class Main {
     public static void main(String[] args) {
-        Game game = new Game();
+        Game game;
         UserOptions mainMenu = new UserOptions(new String[]{"Play a new Game", "Checkout the rules", "Quit"});
         byte mainMenuOption = 0;
         Rules gameRules = new Rules();
@@ -14,6 +14,7 @@ public class Main {
             mainMenuOption = mainMenu.getOption();
             switch (mainMenuOption) {
                 case 1:
+                    game = new Game();
                     if (game.game())
                         Display.printSuccessMessage();
                     else
