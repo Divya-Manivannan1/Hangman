@@ -1,8 +1,10 @@
 package Hangman.User;
 
+import Hangman.Game;
 import Hangman.UserInput.UserInput;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GameUserList {
     private final ArrayList<GameUser> gameUsers;
@@ -15,11 +17,24 @@ public class GameUserList {
         stringInput = new UserInput();
     }
 
-    public Leaderboard[] getLeaderboard() {
-        Leaderboard[] leaderboard = new Leaderboard[gameUsers.size()];
-        for (int i = 0; i < gameUsers.size(); i++) {
-            leaderboard[i] = new Leaderboard(gameUsers.get(i).getName(), gameUsers.get(i).getHighScore());
+    public void setHighScore() {
+        gameUsers.get(currentUserIndex).setHighScore(gameUsers.get(currentUserIndex).getCurrentGame().getScore());
+    }
+
+    public void setNewGame() {
+        gameUsers.get(currentUserIndex).setCurrentGame();
+    }
+
+    public Game getGame() {
+        return gameUsers.get(currentUserIndex).getCurrentGame();
+    }
+
+    public ArrayList<Leaderboard> getLeaderboard() {
+        ArrayList<Leaderboard> leaderboard = new ArrayList<>();
+        for (GameUser gameUser : gameUsers) {
+            leaderboard.add(new Leaderboard(gameUser.getName(), gameUser.getHighScore()));
         }
+        Collections.sort(leaderboard);
         return leaderboard;
     }
 
@@ -62,7 +77,6 @@ public class GameUserList {
                 System.out.println("Wrong password!!");
             } else {
                 currentUserIndex = userIndex;
-                System.out.println("User signed in " + currentUserIndex);
             }
         } else {
             System.out.println("Sorry! User not found");
@@ -75,10 +89,6 @@ public class GameUserList {
                 return i;
         }
         return -1;
-    }
-
-    public boolean verifyPassword(String password) {
-        return gameUsers.get(currentUserIndex).getPassword().equals(password);
     }
 
 }

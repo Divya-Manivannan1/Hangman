@@ -51,7 +51,7 @@ public class UserInput {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            getInput(type);
+            input = getInput(type);
         }
         return input;
     }

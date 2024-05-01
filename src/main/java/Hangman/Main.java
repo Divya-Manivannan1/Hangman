@@ -7,15 +7,14 @@ import Hangman.UserInput.UserOptions;
 
 public class Main {
     public static void main(String[] args) {
-        Game game;
         UserOptions splashMenu = new UserOptions(new String[]{"Sign in", "Sign up", "Exit Game"});
-        UserOptions mainMenu = new UserOptions(new String[]{"Play a new Game", "Checkout the rules", "Sign out"});
+        UserOptions mainMenu = new UserOptions(new String[]{"Play a new Game", "Checkout the rules", "View leaderboard", "Sign out"});
         byte splashMenuOption = 0;
         byte mainMenuOption = 0;
         Rules gameRules = new Rules();
         GameUserList users = new GameUserList();
 
-
+        Display.printIntro();
         while (splashMenuOption != 3) {
             splashMenuOption = splashMenu.getOption();
             switch (splashMenuOption) {
@@ -28,24 +27,27 @@ public class Main {
                     users.signUp();
                     break;
             }
-            System.out.println(users.getCurrentUserIndex());
 
             if (users.getCurrentUserIndex() >= 0) {
 
-                while (mainMenuOption != 3) {
+                while (mainMenuOption != 4) {
                     mainMenuOption = mainMenu.getOption();
                     switch (mainMenuOption) {
                         case 1:
-                            game = new Game();
-                            if (game.game())
+                            if (users.getGame().game())
                                 Display.printSuccessMessage();
                             else
-                                Display.printFailureMessage(game.getWord());
+                                Display.printFailureMessage(users.getGame().getWord());
+                            users.setHighScore();
+                            users.setNewGame();
                             break;
                         case 2:
                             gameRules.printRules();
                             break;
                         case 3:
+                            Display.printLeaderboard(users.getLeaderboard());
+                            break;
+                        case 4:
                             users.signOut();
                     }
                 }

@@ -27,6 +27,10 @@ public class Game {
         charInput = new UserInput();
     }
 
+    public int getScore() {
+        return score;
+    }
+
     public String getWord() {
         return word;
     }
@@ -54,7 +58,6 @@ public class Game {
 
     public boolean game() {
         while (!gameWon && lives > 0) {
-            Display.clearConsole();
             Display.printHangman(lives);
             System.out.println("Your score is: " + score);
             Display.printLettersGuessed(lettersGuessed);

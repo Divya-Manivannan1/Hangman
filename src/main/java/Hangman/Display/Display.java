@@ -1,5 +1,9 @@
 package Hangman.Display;
 
+import Hangman.User.Leaderboard;
+
+import java.util.ArrayList;
+
 public class Display {
     public static void printWord(String word, boolean[] guessedRight) {
         for (int i = 0; i < guessedRight.length; i++) {
@@ -134,13 +138,10 @@ public class Display {
         System.out.println("The right answer is " + word);
     }
 
-    public static void clearConsole() {
-       /* try {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+    public static void printLeaderboard(ArrayList<Leaderboard> leaderboard) {
+        System.out.format("%15s%15s%n", "Name", "Score");
+        for (Leaderboard row : leaderboard) {
+            System.out.format("%15s%15s%n", row.getName(), row.getHighScore());
         }
-
-        */
     }
 }

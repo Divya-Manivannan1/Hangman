@@ -12,31 +12,23 @@ public class GameUser extends User {
         currentGame = new Game();
     }
 
+    public void setCurrentGame() {
+        currentGame = new Game();
+    }
+
     public int getHighScore() {
         return highScore;
     }
 
-    public void setHighScore(int highScore) {
-        if (this.highScore < highScore)
-            this.highScore = highScore;
-    }
-
-    public void setLastPlayedGame(Game newGame) {
-        currentGame = newGame;
+    public void setHighScore(int score) {
+        if (highScore < score)
+            highScore = score;
+        if (highScore == 0 & score < 0)
+            highScore = score;
     }
 
     public Game getCurrentGame() {
         return currentGame;
-    }
-
-    public boolean isCurrentGameCompleted() {
-        if (currentGame == null)
-            return true;
-        return currentGame.isGameWon();
-    }
-
-    public boolean checkLastPlayedGame(Game game) {
-        return currentGame.equals(game);
     }
 
     @Override
