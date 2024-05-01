@@ -13,7 +13,7 @@ public class Game {
     private int score;
     private final boolean[] lettersGuessed;
 
-    Game() {
+    public Game() {
         word = Library.getRandomWord();
         lives = 8;
         score = 0;

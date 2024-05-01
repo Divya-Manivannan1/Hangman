@@ -35,7 +35,7 @@ public class UserInput {
         return ch;
     }
 
-    protected String getInput(String type) {
+    public String getInput(String type) {
         System.out.println(type);
         String input = scanner.nextLine();
         input = input.trim();
